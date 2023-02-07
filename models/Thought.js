@@ -16,14 +16,10 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: {
-      type: Date,
-      default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
-    },
-    // students: [
+    // reactions: [
     //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Student',
+    //     type: Schema.types.ObjectId,
+    //     ref: "reaction",
     //   },
     // ],
   },
@@ -32,9 +28,12 @@ const thoughtSchema = new Schema(
       virtuals: true,
     },
     id: false,
-  }
+  },
+  thoughtSchema.virtual("reactionCount").get(() => {
+    return this.reactions.length;
+  })
 );
 
-const thought = model("thought", thoughtSchema);
+const thought = mongoose.model("thought", thoughtSchema);
 
 module.exports = thought;

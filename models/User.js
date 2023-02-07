@@ -1,4 +1,8 @@
 const { Schema, Types } = require("mongoose");
+const validateEmail = function (email) {
+  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email);
+};
 
 const userSchema = new Schema(
   {
@@ -16,20 +20,32 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      //matching validation,
+      validate: [validateEmail, "Please fill a valid email address"],
     },
-    thoughts: {
-      type: Date,
-      default: Date.now,
-    },
-    friends: {},
+    thoughts: [
+      {
+        //reference thought model
+        type: Schema.types.ObjectId,
+        ref: "thought",
+      },
+    ],
+    friends: [
+      {
+        type: Schema.types.ObjectId,
+        ref: "user",
+      },
+    ],
   },
   {
     toJSON: {
-      getters: true,
+      virtuals: true,
     },
     id: false,
-  }
+  },
+  userSchema.virtual("friendCount").get(() => {
+    return this.friends.length;
+  })
 );
+const user = mongoose.model("user", userSchema);
 
 module.exports = userSchema;
