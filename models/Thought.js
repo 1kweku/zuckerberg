@@ -16,24 +16,19 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    // reactions: [
-    //   {
-    //     type: Schema.types.ObjectId,
-    //     ref: "reaction",
-    //   },
-    // ],
   },
   {
     toJSON: {
       virtuals: true,
     },
     id: false,
-  },
-  thoughtSchema.virtual("reactionCount").get(() => {
-    return this.reactions.length;
-  })
+  }
 );
 
-const thought = mongoose.model("thought", thoughtSchema);
+thoughtSchema.virtual("reactionCount").get(() => {
+  return this.reactions.length;
+});
 
-module.exports = thought;
+const Thought = model("thought", thoughtSchema);
+
+module.exports = Thought;
