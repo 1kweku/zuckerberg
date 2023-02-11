@@ -16,7 +16,8 @@ module.exports = {
   },
   // Get a single Thought
   getSingleThought(req, res) {
-    Thought.findOne({ _id: req.params.ThoughtId })
+    Thought.findOne({ _id: req.params.thoughtId })
+      .select("-__v")
       .then((thought) => {
         res.json(thought);
       })
@@ -33,7 +34,7 @@ module.exports = {
   },
   // Delete a Thought and remove them from the course
   deleteThought(req, res) {
-    Thought.findOneAndRemove({ _id: req.params.ThoughtId })
+    Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thoughtData) =>
         !thoughtData
           ? res.status(404).json({ message: "No such thought exists" })
