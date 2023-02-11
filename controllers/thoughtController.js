@@ -34,22 +34,11 @@ module.exports = {
   },
   // Delete a Thought and remove them from the course
   deleteThought(req, res) {
-    Thought.findOneAndRemove({ _id: req.params.thoughtId })
+    Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then((thoughtData) =>
         !thoughtData
           ? res.status(404).json({ message: "No such thought exists" })
-          : User.findOneAndUpdate(
-              { thoughts: req.params.thoughtId },
-              { $pull: { thoughts: req.params.thoughtId } },
-              { new: true }
-            )
-      )
-      .then((userData) =>
-        !userData
-          ? res.status(404).json({
-              message: "Thought deleted, but no user found",
-            })
-          : res.json({ message: "Thought successfully deleted" })
+          : res.status(200).json({ message: "Thought deleted" })
       )
       .catch((err) => {
         console.log(err);
@@ -58,9 +47,9 @@ module.exports = {
   },
   updateThought(req, res) {
     Thought.findOneAndUpdate(
-      { _id: req.params.UserId }
-      // { $set: req.body },
-      // { runValidators: true, new: true }
+      { _id: req.params.UserId },
+      { $set: req.body },
+      { runValidators: true, new: true }
     )
       .then((thought) =>
         !thought

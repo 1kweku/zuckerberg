@@ -35,7 +35,7 @@ module.exports = {
           ? res.status(404).json({ message: "No User with that ID" })
           : User.deleteMany({ _id: { $in: User.thoughts } })
       )
-      .then(() => res.json({ message: "User and students deleted!" }))
+      .then(() => res.json({ message: "User deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
   // Update a User
