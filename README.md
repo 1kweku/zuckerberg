@@ -2,12 +2,12 @@
 
 ## Table of Contents 
 #### [Description](#Description)
-#### [Video-Link](#VideoLink)
-#### [User-Story](#UserStory)
-#### [Acceptance-Criteria](#AcceptanceCriteria)
+#### [Video Link](#Video-Link)
+#### [User Story](#User-Story)
+#### [Acceptance Criteria](#Acceptance-Criteria)
 #### [Installation](#Installation)
 #### [Usage](#Usage)
-#### [Future-Updates](#FutureUpdates)
+#### [Future Updates](#Future-Updates)
 #### [Questions](#Questions)
 
 ## Description
