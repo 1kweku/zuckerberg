@@ -7,6 +7,7 @@
 #### [Acceptance Criteria](#AcceptanceCriteria)
 #### [Installation](#Installation)
 #### [Usage](#Usage)
+#### [Future Updates](#FutureUpdates)
 #### [Questions](#Questions)
 
 ## Description
@@ -34,6 +35,9 @@ To use this application, simply clone the repository to your local device then r
 
 ## Usage
 Run npm start to begin your server, it will then run on the defined port. As there is not yet an interface for this application, Insomnia or another similar application will be necessary to use it.
+
+## Future Updates
+This is an ongoing project and will shortly have fully functional UI.
 
 ## Questions 
 For any questions, contact me at adarkwakweku@gmail.com
